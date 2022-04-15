@@ -1,4 +1,4 @@
-import './Accueil.css';
+
 import {BrowserRouter as Router,Routes,Route,Link} from "react-router-dom";
 import '../../../tools/node_modules/bootstrap/dist/css/bootstrap.css'
 import Inscription from './Incription';
