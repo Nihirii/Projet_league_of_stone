@@ -1,6 +1,6 @@
 import React from "react"
 import {Form, Field} from "react-final-form"
-import '../../../tools/node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../../../tools/node_modules/bootstrap/dist/css/bootstrap.css'
 
 
 export default class Connexion extends React.Component {
