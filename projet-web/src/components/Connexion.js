@@ -1,17 +1,22 @@
 import React from "react"
 import {Form, Field} from "react-final-form"
+import { BrowserRouter as Router, Switch, Route, Navigate
+  ,} from "react-router-dom";
 //import '../../node_modules/bootstrap/dist/css/bootstrap.css
 import Accueil from "./Accueil"
-import {BrowserRouter as Router,Routes,Route,Link} from "react-router-dom";
+
 
 export default class Connexion extends React.Component {
+
+  
 
   constructor(props) {
     super(props);
 
-    this.state = {wrong: false,};
+    this.state = {wrong: false}
 
   }
+  
 
 
 
@@ -38,26 +43,12 @@ export default class Connexion extends React.Component {
           name : data.name,
           token : data.token,
         }
-        console.log("ok")
-        return(
-
-        <Router>
-
-          <Routes>
-
-            <Route path="/" element = {<Accueil user = {user}/>}/>
-
-
-          </Routes>
-
-        </Router>
-
-        );
 
       }
       )
       .catch((err) => console.error(err));  //SI code = 409 -> existe déja
     
+      //redirection
     
   }
 

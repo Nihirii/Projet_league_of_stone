@@ -29,10 +29,13 @@ class App extends React.Component{
           </nav>
 
             <Routes>
-
+            
+              <Route path="/" element = {<App/>}/>
+              
               <Route path="/connexion" element = {<Connexion/>}/>
 
               <Route path="/inscription" element = {<Inscription/>}/>
+
 
             </Routes>
 
