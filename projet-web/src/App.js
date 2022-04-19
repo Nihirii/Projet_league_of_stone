@@ -1,5 +1,7 @@
 import Inscription from "./components/Inscription";
 import Connexion from "./components/Connexion";
+import Logout from "./components/Logout";
+import Home from "./components/Home";
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React from "react";
@@ -8,6 +10,9 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 function App() {
+  const utilisateur = store.getState(); //récupére le state actuel (user)
+  console.log(utilisateur);
+
   return (
     <div>
       <Provider store={store}>
@@ -28,16 +33,26 @@ function App() {
                     Créer un compte
                   </Link>
                 </li>
+
+                <li class="nav-item active">
+                  <Link to="/deconnexion" className="nav-link">
+                    Se déconnecter
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>
 
           <Routes>
+            <Route path="/" element={<Home />} />
+
             <Route path="/connexion" element={<Connexion />} />
 
             <Route path="/inscription" element={<Inscription />} />
 
             <Route path="/accueil" element={<Accueil />} />
+
+            <Route path="/deconnexion" element={<Logout />} />
           </Routes>
         </Router>
       </Provider>

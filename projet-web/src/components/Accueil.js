@@ -1,14 +1,7 @@
-import React from "react"
+import React from "react";
 
-export default class Accueil extends React.Component {
-
-    render() {
-
-        return(
-
-            <h1>CC</h1>
-
-        );
-    }
-
+function Accueil() {
+  return <h1>CONNECTE</h1>;
 }
+
+export default Accueil;
