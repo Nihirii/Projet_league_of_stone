@@ -1,7 +1,8 @@
 import React from "react"
 import {Form, Field} from "react-final-form"
-// import '../../../tools/node_modules/bootstrap/dist/css/bootstrap.css'
-
+//import '../../node_modules/bootstrap/dist/css/bootstrap.css
+import Accueil from "./Accueil"
+import {BrowserRouter as Router,Routes,Route,Link} from "react-router-dom";
 
 export default class Connexion extends React.Component {
 
@@ -12,8 +13,52 @@ export default class Connexion extends React.Component {
 
   }
 
+
+
   onSubmit(values) {
-    console.log("cc")
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: values.pseudo + "@l3.fr",
+        password: values.mdp,
+      })
+      
+    }
+
+
+    fetch("http://localhost:3001/login", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+
+        const user = {
+          id : data.id,
+          email : data.email,
+          name : data.name,
+          token : data.token,
+        }
+        console.log("ok")
+        return(
+
+        <Router>
+
+          <Routes>
+
+            <Route path="/" element = {<Accueil user = {user}/>}/>
+
+
+          </Routes>
+
+        </Router>
+
+        );
+
+      }
+      )
+      .catch((err) => console.error(err));  //SI code = 409 -> existe déja
+    
+    
   }
 
   render() {
@@ -52,14 +97,6 @@ export default class Connexion extends React.Component {
                   type="password"
                 />
 
-                <label>Confirmez votre mot de passe </label>
-                <Field
-                  name="confirmemdp"
-                  component="input"
-                  placeholder="Mot de passe"
-                  className="form-control"
-                  type="password"
-                />
               </div>
 
               <button className="btn btn-primary" type="submit">
