@@ -3,15 +3,16 @@ import Connexion from "./components/Connexion"
 import './styles/App.css';
 import {BrowserRouter as Router,Routes,Route,Link} from "react-router-dom";
 import React from "react"
+import Accueil from "./components/Accueil";
 
-class App extends React.Component{
+function App(){
 
-  render(){
+
 
     return (
       <div>
         <Router>
-
+      
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
             
@@ -28,14 +29,13 @@ class App extends React.Component{
             </div>
           </nav>
 
-            <Routes>
-            
-              <Route path="/" element = {<App/>}/>
+            <Routes>       
               
               <Route path="/connexion" element = {<Connexion/>}/>
 
               <Route path="/inscription" element = {<Inscription/>}/>
-
+   
+              <Route path="/accueil" element = {<Accueil/>}/>
 
             </Routes>
 
@@ -44,7 +44,7 @@ class App extends React.Component{
       </div>
 
     );
-}
+
 }
 
 export default App;
