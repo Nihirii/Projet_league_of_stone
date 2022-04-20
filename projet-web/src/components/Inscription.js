@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
 import { useNavigate } from "react-router";
-//import "../../../tools/node_modules/bootstrap/dist/css/bootstrap.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+import '../styles/Connexion.css';
 
 function Inscription() {
   const [userAlreadyExist, setUserAlreadyExist] = useState(false);
