@@ -1,9 +1,19 @@
 import React from "react";
-import {Link } from "react-router-dom";
+import {Link, Navigate } from "react-router-dom";
 import '../styles/HomeConnect.css';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+import { useNavigate } from "react-router";
 
 function HomeConnect() {
+
+  const navigate = useNavigate();
+
+  function lancerMatchmaking(){
+
+    navigate("/participation")
+
+  }
+
   return (
     <body>
       <header>
@@ -17,14 +27,14 @@ function HomeConnect() {
 
       </header>
 
-      <h1>Connecté</h1>
+
       <div class="centre">
-        <button>Trouvez un match</button>
+        <button onClick={lancerMatchmaking}>Trouvez un match</button>
       </div>
     </body>
 
-    
-    
+
+
     
 
   );

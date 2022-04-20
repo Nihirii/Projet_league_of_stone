@@ -3,6 +3,7 @@ import Connexion from "./components/Connexion";
 import Logout from "./components/Logout";
 import Home from "./components/Home";
 import HomeConnect from "./components/HomeConnect";
+import Participer from "./components/Participer"
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -23,6 +24,8 @@ function App() {
           <Route path="/accueil" element={<HomeConnect />} />
 
           <Route path="/deconnexion" element={<Logout />} />
+          
+          <Route path="/participation" element={<Participer />} />
 
         </Routes>
       </Router>

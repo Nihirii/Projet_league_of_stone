@@ -5,6 +5,8 @@ import { store } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { MatchMaking } from "../redux/actions";
+import { LogInAction } from "../redux/actions";
+
 
 
 function Participer() {
@@ -56,12 +58,8 @@ function Participer() {
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (
           <div className="div" onSubmit={handleSubmit}>
-            <h2>pariciper</h2>
-            
-
-            
-
-            <button className="btn btn-primary" type="submit">
+            <h2>participer</h2>
+              <button className="btn btn-primary" type="submit">
               Valider
             </button>
           </div>
