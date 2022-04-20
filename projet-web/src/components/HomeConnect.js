@@ -16,17 +16,19 @@ function HomeConnect() {
 
   return (
     <>
-
-      <img class="profil-pic" src={require("../medias/iconeinvocateur.jpg")} alt="Profil picture"></img>
+      <div >
+        
+      <img className=" rounded float-left" src={require("../medias/iconeinvocateur.png")} alt="Profil picture"></img>
       
       <Link to="/deconnexion" className="btn btn-dark" >
         Se déconnecter
       </Link>
+      <p>PIPOU</p>
+      </div>
 
 
       <div className="centre" >
-
-          <h2>participer</h2>
+          <h2>League of Stone</h2>
           <button id="btnmatch" className="btn" type="submit" onClick={lancerMatchmaking}>
             Trouvez un match
           </button>
