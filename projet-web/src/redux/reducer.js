@@ -5,6 +5,7 @@ const initialState = {
     email: "",
     token: undefined,
   },
+
 };
 
 export default (state = initialState, { type, payload }) => {

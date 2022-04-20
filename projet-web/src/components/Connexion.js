@@ -12,7 +12,7 @@ function Connexion() {
   const dispatch = useDispatch(); // dispatch les donné
   const setUser = (data) => dispatch(LogInAction(data));
   const reduxUser = useSelector(state => state.user)  // appelle d'action 
-  console.log(reduxUser)
+
 
   function onSubmit(values) {
     const requestOptions = {

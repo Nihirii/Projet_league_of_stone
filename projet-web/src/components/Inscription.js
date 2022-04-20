@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
+import { useNavigate } from "react-router";
 //import "../../../tools/node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Inscription() {
-
-  const [userCreated, setuserCreated] = useState(false);
+  const [userAlreadyExist, setUserAlreadyExist] = useState(false);
+  const [userCreated, setUserCreated] = useState(false);
   const [errorPassword, seterrorPassword] = useState(false);
-
+  const navigate = useNavigate();
 
   function onSubmit(values) {
     if (values.mdp != values.confirmemdp) {
@@ -26,23 +27,25 @@ function Inscription() {
       fetch("http://localhost:3001/user", requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          //if response.status == "409":
-          //else:
-          console.log(data); //AFFICHER COOL
-          setuserCreated(true);
+          // if (data.status == "409") {
+          //   setUserAlreadyExist(true);
+          // }
+
+          setUserCreated(true);
+          navigate("/");
         })
-        .catch((err) => console.error(err)); //SI response.status = 409 -> existe déja
+        .catch((err) => console.error(err)); 
     }
   }
 
   return (
     <div>
-      {userCreated && (
+      {userAlreadyExist && (
         <div
           className="alert alert-warning alert-dismissible fade show"
           role="alert"
         >
-          Inscription réussie !
+          Ce pseudo existe déja !
           <button
             type="button"
             class="close"
@@ -116,6 +119,5 @@ function Inscription() {
     </div>
   );
 }
-
 
 export default Inscription;
