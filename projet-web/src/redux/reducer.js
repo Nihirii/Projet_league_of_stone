@@ -6,6 +6,13 @@ const initialState = {
     token: undefined,
   },
 
+  matchM: { 
+    matchmakingId: "", 
+    request:"",
+  }
+
+
+
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -14,6 +21,9 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, user: { ...payload } };
     case "LOGOUT":
       return initialState;
+
+    case "MATCHMAKING":
+      return { ...state, matchM: { ...payload } };
 
     default:
       return state;

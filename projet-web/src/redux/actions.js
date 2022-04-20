@@ -9,3 +9,7 @@ export const LogOutAction = (payload) => {
     return { type: "LOGOUT", payload: { } };
   };
   
+export const MatchMaking = (payload) => {
+
+  return { type: "MATCHMAKING", payload: { } };
+};
