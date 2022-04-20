@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, Navigate } from "react-router-dom";
+import {Link } from "react-router-dom";//, Navigate
 import '../styles/HomeConnect.css';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router";

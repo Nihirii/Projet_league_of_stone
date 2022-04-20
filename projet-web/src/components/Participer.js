@@ -1,75 +1,99 @@
-import React from "react";//, { useState, useEffect }
-import { Form} from "react-final-form";
+import React from "react"; //, { useState, useEffect }
+//import { Form} from "react-final-form";
 import { store } from "../redux/store";
 //import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux"; //, useSelector
+// import { useNavigate } from "react-router";
 import { MatchMaking } from "../redux/actions";
-import { LogInAction } from "../redux/actions";
-
-
 
 function Participer() {
+  //const [myRequest, setMyRequest] = useState([])
+  const utilisateur = store.getState();
 
-    //const [myRequest, setMyRequest] = useState([])
-    const utilisateur = store.getState()
+  const dispatch = useDispatch(); // dispatch les donné
+  const setMatchM = (data) => dispatch(MatchMaking(data));
 
-    const dispatch = useDispatch(); // dispatch les donné
-    const setMatchM = (data) => dispatch(LogInAction(data));
+  //const [error, setError] = useState(null);
 
-    
+  function participant(value) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("www-authenticate", utilisateur.user.token);
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
 
-    function onSubmit(value) {
-        const requestOptions = {
-            method: "GET",
-            headers: { "Content-Type": "application/json", "www-authenticate ":  utilisateur.user.token},
-        
-        }
-        console.log(utilisateur.user.token)
+    console.log("token : " + utilisateur.user.token);
 
-        // useEffect(() => {
-        //         setMyRequest(myRequest)
+    // },)
+    //useEffect( () => {    // ajouter update toutes les x secondes dans le useEffect
+    fetch("http://localhost:3001/matchmaking/participate", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        const matchM = {
+          matchmakingId: data.matchmakingId,
+          request: data.request,
+        };
 
-        // },)
+        console.log(matchM);
 
-        fetch("http://localhost:3001/matchmaking/participate", requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-            const matchM = {
-                matchmakingId: data.matchmakingId,
-                request: data.request,
+        setMatchM(matchM); // recup donnéers de user et renvoi vers le redux
+      })
+      .catch((error) => console.error(error));
+    //}, [] )
+  }
 
-            }
+  // function MyComponent() {
+  //   const [error, setError] = useState(null);
+  //   const [isLoaded, setIsLoaded] = useState(false);
+  //   const [items, setItems] = useState([]);
 
-         
+  //   // Note: the empty deps array [] means
+  //   // this useEffect will run once
+  //   // similar to componentDidMount()
+  //   useEffect(() => {
+  //     fetch("https://api.example.com/items")
+  //       .then(res => res.json())
+  //       .then(
+  //         (result) => {
+  //           setIsLoaded(true);
+  //           setItems(result);
+  //         },
+  //         // Note: it's important to handle errors here
+  //         // instead of a catch() block so that we don't swallow
+  //         // exceptions from actual bugs in components.
+  //         (error) => {
+  //           setIsLoaded(true);
+  //           setError(error);
+  //         }
+  //       )
+  //   }, [])
 
-            console.log(matchM)
-            
-            setMatchM(matchM) // recup donnéers de user et renvoi vers le redux
+  //   if (error) {
+  //     return <div>Error: {error.message}</div>;
+  //   } else if (!isLoaded) {
+  //     return <div>Loading...</div>;
+  //   } else {
+  //     return (
+  //       <ul>
+  //         {items.map(item => (
+  //           <li key={item.id}>
+  //             {item.name} {item.price}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     );
+  //   }
+  // }
 
-        })
-        .catch((error) => console.error(error))
+  return (
+    <button className="btn btn-primary" onClick={participant}>
+      Trouver un match
+    </button>
 
-        
-    }
 
-    return (
-        <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
-          <div className="div" onSubmit={handleSubmit}>
-            <h2>participer</h2>
-              <button className="btn btn-primary" type="submit">
-              Valider
-            </button>
-          </div>
-        )}
-      />
-    )
-    
-
-    
-
+  );
 }
 
 export default Participer;
