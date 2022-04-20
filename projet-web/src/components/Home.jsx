@@ -1,26 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../styles/Home.css';
 
 function Home() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <Link to="/connexion" className="nav-link">
-                Se connecter
-              </Link>
-            </li>
-            <li class="nav-item active">
-              <Link to="/inscription" className="nav-link">
-                Créer un compte
-              </Link>
-            </li>
-          </ul>
+      <div className="home"></div>
+      <div className="BoutonHome">
+        <div className="logoLOS">
+          <img src={require("../medias/logoLOS.png")} alt="LogoLOS"/>
         </div>
-      </nav>
-      <h1>Pas connecté</h1>;
+        <div className="links">
+          <Link id="btnhome" className="btn btn-lg" to="/inscription">Crée un compte</Link>
+          <Link id="btnhome" className="btn btn-lg" to="/connexion">Se connecter</Link>
+        </div>
+      </div>
     </div>
   );
 }

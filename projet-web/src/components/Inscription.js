@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
+import { Link } from "react-router-dom";//, Navigate
 import { useNavigate } from "react-router";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import '../styles/Connexion.css';
@@ -40,7 +41,15 @@ function Inscription() {
   }
 
   return (
-    <div>
+    <div >
+      <div className="Logoconnec">
+        <Link to="/deconnexion"  >
+          <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
+        </Link>
+
+      </div>
+
+      <div className="connexion"></div>
       {userAlreadyExist && (
         <div
           className="alert alert-warning alert-dismissible fade show"
@@ -74,49 +83,50 @@ function Inscription() {
           </button>
         </div>
       )}
+      <div className="inscription">
+        {!userCreated && (
+          <Form
+            onSubmit={onSubmit}
+            render={({ handleSubmit }) => (
+              <form className="form" onSubmit={handleSubmit}>
+                <h2>Inscription</h2>
 
-      {!userCreated && (
-        <Form
-          onSubmit={onSubmit}
-          render={({ handleSubmit }) => (
-            <form className="form" onSubmit={handleSubmit}>
-              <h2>Inscription</h2>
+                <div className="form-group" id="form">
+                  <label>Pseudo</label>
+                  <Field
+                    name="pseudo"
+                    component="input"
+                    placeholder="pseudo"
+                    className="form-control"
+                  />
 
-              <div className="form-group">
-                <label>Pseudo</label>
-                <Field
-                  name="pseudo"
-                  component="input"
-                  placeholder="pseudo"
-                  className="form-control"
-                />
+                  <label>Mot de passe</label>
+                  <Field
+                    name="mdp"
+                    component="input"
+                    placeholder="Mot de passe"
+                    className="form-control"
+                    type="password"
+                  />
 
-                <label>Mot de passe</label>
-                <Field
-                  name="mdp"
-                  component="input"
-                  placeholder="Mot de passe"
-                  className="form-control"
-                  type="password"
-                />
+                  <label>Confirmez votre mot de passe </label>
+                  <Field
+                    name="confirmemdp"
+                    component="input"
+                    placeholder="Mot de passe"
+                    className="form-control"
+                    type="password"
+                  />
+                </div>
 
-                <label>Confirmez votre mot de passe </label>
-                <Field
-                  name="confirmemdp"
-                  component="input"
-                  placeholder="Mot de passe"
-                  className="form-control"
-                  type="password"
-                />
-              </div>
-
-              <button className="btn btn-primary" type="submit">
-                Valider
-              </button>
-            </form>
-          )}
-        />
-      )}
+                <button className="btn btn-dark" type="submit">
+                  Valider
+                </button>
+              </form>
+            )}
+          />
+        )}
+      </div>
     </div>
   );
 }

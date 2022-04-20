@@ -1,8 +1,9 @@
 import React from "react";
-import {Link } from "react-router-dom";//, Navigate
+import { Link } from "react-router-dom";//, Navigate
 import '../styles/HomeConnect.css';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 function HomeConnect() {
 
@@ -14,30 +15,30 @@ function HomeConnect() {
 
   }
 
+  const reduxUser = useSelector(state => state.user)  // appelle d'action
+
   return (
-    <>
-      <div >
-        
-      <img className=" rounded float-left" src={require("../medias/iconeinvocateur.png")} alt="Profil picture"></img>
-      
-      <Link to="/deconnexion" className="btn btn-dark" >
-        Se déconnecter
-      </Link>
-      <p>PIPOU</p>
+    <div>
+      <div className="homeConnect"></div>
+      <div id="profil" className="col-2">
+
+          <img className=" rounded float-left  " src={require("../medias/iconeinvocateur.png")} alt="Profil picture" />
+        <h2 className="">{reduxUser.name}</h2>
+        <Link to="/deconnexion" className="btn btn-dark" >
+          Se déconnecter
+        </Link>
+
       </div>
-
-
       <div className="centre" >
-          <h2>League of Stone</h2>
-          <button id="btnmatch" className="btn" type="submit" onClick={lancerMatchmaking}>
-            Trouvez un match
-          </button>
+        <button id="btnmatch" className="btn" type="submit" onClick={lancerMatchmaking}>
+          Trouvez un match
+        </button>
       </div>
-    </>
+    </div>
 
 
 
-    
+
 
   );
 }
