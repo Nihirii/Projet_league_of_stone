@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "League of legend";
+  src: url("../medias/Friz\ Quadrata\ Bold.otf") format("otf"),
+}
 body::after {
     content: "";
     background-image: url("../medias/backgroundinscription.jpg");
@@ -8,4 +12,17 @@ body::after {
     right: 0;
     position: absolute;
     z-index: -1;
-  }
+}
+#btnmatch{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:rgba(255, 255, 255, 0.5);
+  height: 15%;
+  width: 25%;
+  font-size: 200%;
+  font-weight: bold;
+  font-family: "league of legend"; 
+  border-radius: 15px;
+}

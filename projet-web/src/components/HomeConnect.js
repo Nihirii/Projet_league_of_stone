@@ -8,30 +8,30 @@ function HomeConnect() {
 
   const navigate = useNavigate();
 
-  function lancerMatchmaking(){
+  function lancerMatchmaking() {
 
     navigate("/participation")
 
   }
 
   return (
-    <body>
-      <header>
-        <ul>
-          <li class="nav-item active">
-            <Link to="/deconnexion" className="nav-link">
-              Se déconnecter
-            </Link>
-          </li>
-        </ul>
+    <>
 
-      </header>
+      <img class="profil-pic" src={require("../medias/iconeinvocateur.jpg")} alt="Profil picture"></img>
+      
+      <Link to="/deconnexion" className="btn btn-dark" >
+        Se déconnecter
+      </Link>
 
 
-      <div class="centre">
-        <button onClick={lancerMatchmaking}>Trouvez un match</button>
+      <div className="centre" >
+
+          <h2>participer</h2>
+          <button id="btnmatch" className="btn" type="submit" onClick={lancerMatchmaking}>
+            Trouvez un match
+          </button>
       </div>
-    </body>
+    </>
 
 
 
