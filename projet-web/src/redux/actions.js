@@ -1,5 +1,6 @@
 export const LogInAction = (payload) => {
   const { id, name, email, token } = payload;
+  
 
   return { type: "LOGIN", payload: { id, name, email, token } };
 };
@@ -7,9 +8,13 @@ export const LogInAction = (payload) => {
 export const LogOutAction = (payload) => {
   
     return { type: "LOGOUT", payload: { } };
-  };
+};
   
-export const MatchMaking = (payload) => {
 
-  return { type: "MATCHMAKING", payload: { } };
+
+export const MatchMaking = (payload) => {
+  const {matchmakingId, request} = payload;
+
+
+  return { type: "MATCHMAKING", payload: { matchmakingId, request} };
 };
