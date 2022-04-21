@@ -18,3 +18,10 @@ export const MatchMaking = (payload) => {
 
   return { type: "MATCHMAKING", payload: { matchmakingId, request} };
 };
+
+export const ALLMATCHMAKING = (payload) => {
+  const ALLMATCHMAKING = payload;
+
+
+  return { type: "ALLMATCHMAKING", payload: { payload} };
+};
