@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Card.css';
+import '../styles/Choix.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 
 

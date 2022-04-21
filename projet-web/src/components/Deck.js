@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
-import '../styles/Deck.css';
+import '../styles/Choix.css';
+
 
 class Deck extends React.Component {
 
@@ -18,12 +19,7 @@ class Deck extends React.Component {
     return (
 
       <section id="deck" className="col-6" >
-        <div>
-            <button>
-              Validé deck
-            </button>
-    
-        </div>
+ 
         <div className="row">
 
 

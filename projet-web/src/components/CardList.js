@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import '../styles/Choix.css';
 
 class CardList extends React.Component {
   constructor(props){
@@ -17,7 +18,7 @@ class CardList extends React.Component {
 
     return (
 
-      <div className="col-6 " id="pouet">
+      <div className="col-6 " >
         <div className="row">
 
           {this.props.carte.map((entry, _) => {
