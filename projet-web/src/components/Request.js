@@ -4,16 +4,38 @@ import '../styles/HomeConnect.css';
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 import { useSelector } from "react-redux";
-
+import { store } from "../redux/store";
 
 function Request() {
 
-
+  const utilisateur = store.getState();
   const reduxAllParticipants = useSelector(state => state.AllMatch)  // appelle d'action
   console.log(reduxAllParticipants)
   const listParticipants = (reduxAllParticipants.payload).map((d) => 
   <li key={d.matchmakingId} onClick={() => {
-    console.log("choosed " + d.name + " for matching request")
+    
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("www-authenticate", utilisateur.user.token);
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
+
+    console.log("token : " + utilisateur.user.token);
+    
+    // },)
+    //useEffect( () => {    // ajouter update toutes les x secondes dans le useEffect
+    const url = "http://localhost:3001/matchmaking/request?matchmakingId=" + d.matchmakingId;
+    console.log(url);
+       fetch(url, requestOptions)
+      .then((response) => response)
+      .then((data) => {
+        console.log(data);
+        console.log("match request sent to " + d.name + " please wait for his confirmation");
+        }
+      )
+      .catch((error) => console.error(error));
 }
 } > {d.name} </li>);
 
