@@ -9,9 +9,9 @@ const initialState = {
   matchM: { 
     matchmakingId: "", 
     request:"",
-  }
+  },
 
-
+  AllMatch: [],
 
 };
 
@@ -24,8 +24,9 @@ export default (state = initialState, { type, payload }) => {
 
     case "MATCHMAKING":
       return { ...state, matchM: { ...payload } };
-
-    default:
+    case "ALLMATCHMAKING":
+      return { ...state, AllMatch: { ...payload } };
+  default:
       return state;
   }
 };

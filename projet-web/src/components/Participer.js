@@ -1,17 +1,18 @@
 import React from "react"; //, { useState, useEffect }
 //import { Form} from "react-final-form";
 import { store } from "../redux/store";
-//import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux"; //, useSelector
-// import { useNavigate } from "react-router";
-import { MatchMaking } from "../redux/actions";
+import { ALLMATCHMAKING, MatchMaking } from "../redux/actions";
 
 function Participer() {
+  const navigate = useNavigate();
   //const [myRequest, setMyRequest] = useState([])
   const utilisateur = store.getState();
 
   const dispatch = useDispatch(); // dispatch les donné
   const setMatchM = (data) => dispatch(MatchMaking(data));
+  const setAllMatch = (data) => dispatch(ALLMATCHMAKING(data));
 
   //const [error, setError] = useState(null);
 
@@ -41,6 +42,17 @@ function Participer() {
         setMatchM(matchM); // recup donnéers de user et renvoi vers le redux
       })
       .catch((error) => console.error(error));
+
+      fetch("http://localhost:3001/matchmaking/getAll", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        
+        setAllMatch(data);
+        navigate("/request");
+      })
+      .catch((error) => console.error(error));
+
     //}, [] )
   }
 

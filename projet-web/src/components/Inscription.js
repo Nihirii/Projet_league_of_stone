@@ -12,7 +12,7 @@ function Inscription() {
   const navigate = useNavigate();
 
   function onSubmit(values) {
-    if (values.mdp != values.confirmemdp) {
+    if (values.mdp !== values.confirmemdp) {
       seterrorPassword(true);
     } else {
       const requestOptions = {
