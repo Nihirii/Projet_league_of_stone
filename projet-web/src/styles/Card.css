@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "League of legend";
+  src: url("../medias/Friz\ Quadrata\ Bold.otf") format("otf"),
+ }
+
+#pouet {
+
+  /* background-image: url("../medias/background.png");
+  background-attachment: fixed; */
+  
+}
+.card {
+
+  background-color: #1b1918!important;
+  color : white;
+  padding: 0;
+  margin: 1%;
+  font-family: "league of legend"; ;
+}
+
+#carte:hover {
+  box-shadow: 0 0 10px black;
+}
+.card-body {
+  padding: 0;
+  text-align: center;
+}
+
+#contenucard{
+}
+
+
+
+

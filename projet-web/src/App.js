@@ -6,6 +6,7 @@ import HomeConnect from "./components/HomeConnect";
 import Participer from "./components/Participer"
 import Request from "./components/Request"
 import Match from "./components/Match"
+import Choix from "./components/Choix";
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -32,6 +33,8 @@ function App() {
           <Route path="/request" element={<Request />} />
 
           <Route path="/match" element={<Match />} />
+
+          <Route path="/cartes" element={<Choix />} />
 
         </Routes>
       </Router>

@@ -22,10 +22,13 @@ function HomeConnect() {
       <div className="homeConnect"></div>
       <div id="profil" className="col-2">
 
-          <img className=" rounded float-left  " src={require("../medias/iconeinvocateur.png")} alt="Profil picture" />
+        <img className=" rounded float-left  " src={require("../medias/iconeinvocateur.png")} alt="Profil picture" />
         <h2 className="">{reduxUser.name}</h2>
         <Link to="/deconnexion" className="btn btn-dark" >
           Se déconnecter
+        </Link>
+        <Link to="/cartes" className="btn btn-dark" >
+          choix cartes
         </Link>
 
       </div>

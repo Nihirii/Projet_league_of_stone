@@ -1,4 +1,4 @@
-import React from "react"; //, { useState, useEffect }
+import React, { useEffect } from "react"; //, { useState, useEffect }
 //import { Form} from "react-final-form";
 import { store } from "../redux/store";
 import { useNavigate } from "react-router";
@@ -43,6 +43,9 @@ function Participer() {
       })
       .catch((error) => console.error(error));
 
+
+      
+
       fetch("http://localhost:3001/matchmaking/getAll", requestOptions)
       .then((response) => response.json())
       .then((data) => {
@@ -53,8 +56,17 @@ function Participer() {
       })
       .catch((error) => console.error(error));
 
+      // useEffect(() => {
+
+
+      // }
+      // )
+
     //}, [] )
   }
+
+
+
 
   // function MyComponent() {
   //   const [error, setError] = useState(null);
