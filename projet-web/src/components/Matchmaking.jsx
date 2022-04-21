@@ -7,7 +7,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Matchmaking() {
   const utilisateur = store.getState();
-  const dispatch = useDispatch(); // dispatch les donnée
+  const dispatch = useDispatch();
   const setMatchM = (data) => dispatch(MatchMaking(data));
   const matchMa = useSelector((state) => state.matchM);
   const [listeParticipants, setListeParticipants] = useState([]);
@@ -19,6 +19,7 @@ function Matchmaking() {
     const timer = setInterval(async () => {
       participer();
       participants();
+      // accepted();
     }, 3000);
     return () => clearInterval(timer);
   }, []);
@@ -39,8 +40,6 @@ function Matchmaking() {
           matchmakingId: data.matchmakingId,
           request: data.request,
         };
-
-        console.log("dans participer");
 
         const req = [];
         data.request.forEach((elt) => {
@@ -107,11 +106,36 @@ function Matchmaking() {
       requestOptions
     )
       .then((response) => {
-        console.log("dans sendRequest");
         setRequestSend(true);
       })
       .catch((error) => console.error(error));
   }
+
+  function accepted(){
+
+    //regarder si un match existe avec lui, si oui -> navigate vers match
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("www-authenticate", utilisateur.user.token);
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
+
+    fetch(
+      "http://localhost:3001/match/getAllMatch",requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/match");
+      })
+      .catch((error) => console.error(error));
+  }
+
+
+
+  
 
   function acceptRequest(idMatch) {
     const headers = new Headers();
@@ -127,13 +151,13 @@ function Matchmaking() {
         idMatch,
       requestOptions
     )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then((response)  => {
+        console.log(response);
         navigate("/match");
       })
       .catch((error) => console.error(error));
   }
+
 
   return (
     <div>
