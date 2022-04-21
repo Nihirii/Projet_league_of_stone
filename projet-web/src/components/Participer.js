@@ -99,11 +99,33 @@ function Participer() {
   //   }
   // }
 
-  return (
-    <button className="btn btn-primary" onClick={participant}>
-      Trouver un match
-    </button>
 
+
+  
+  return (
+
+    <>
+      <button className="btn btn-primary" onClick={participant}>
+        Trouver un match
+      </button>
+
+    </>
+
+    /* <div className="homeConnect"></div>
+    <div id="profil" className="col-2">
+
+        <img className=" rounded float-left  " src={require("../medias/iconeinvocateur.png")} alt="Profil picture" />
+      <h2 className="">{reduxUser.name}</h2>
+      <Link to="/deconnexion" className="btn btn-dark" >
+        Se déconnecter
+      </Link>
+
+    </div>
+    <div className="centre" >
+      <button id="btnmatch" className="btn" type="submit" onClick={lancerMatchmaking}>
+        Trouvez un match
+      </button>
+    </div> */
 
   );
 }
