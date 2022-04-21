@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";//, Navigate
+import { Link } from "react-router-dom"; //, Navigate
 import { useNavigate } from "react-router";
 import { LogInAction } from "../redux/actions";
 
@@ -12,10 +12,11 @@ function Connexion() {
   const navigate = useNavigate();
   const dispatch = useDispatch(); // dispatch les donné
   const setUser = (data) => dispatch(LogInAction(data));
-  const reduxUser = useSelector(state => state.user)  // appelle d'action 
-
+  const reduxUser = useSelector((state) => state.user); // appelle d'action
 
   function onSubmit(values) {
+    setWrong(false);
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,46 +26,42 @@ function Connexion() {
       }),
     };
 
-    fetch("http://localhost:3001/login", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        const user = {
-          id: data.id,
-          email: data.email,
-          name: data.name,
-          token: data.token,
-        };
+    fetch("http://localhost:3001/login", requestOptions).then((response) => {
+      if (response.status === 500) {
+        setWrong(true);
+      } else {
+        response
+          .json()
+          .then((data) => {
+            const user = {
+              id: data.id,
+              email: data.email,
+              name: data.name,
+              token: data.token,
+            };
 
-        setUser(user);  // recup donnéers de user et renvoi vers le redux
+            setUser(user); // recup donnéers de user et renvoi vers le redux
 
-        navigate("/accueil");
-      })
-      .catch((err) => console.error(err)); //SI status= 500 -> existe déja
-
-    //redirection
+            //lancer popup
+            
+            navigate("/accueil");
+          })
+          .catch((err) => console.error(err)); //SI status= 500 -> existe déja
+      }
+    });
   }
+
+  //redirection
 
   return (
     <div>
       <div className="Logoconnec">
-        <Link to="/deconnexion"  >
+        <Link to="/deconnexion">
           <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
         </Link>
       </div>
       <div className="connexion"></div>
-      {wrong && (
-        <div className="alert alert-danger" role="alert">
-          Mot de passe ou identifiant incorrect !
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      )}
+
       <div className="inscription">
         <Form
           onSubmit={onSubmit}
@@ -97,6 +94,20 @@ function Connexion() {
             </form>
           )}
         />
+
+        {wrong && (
+          <div className="alert alert-danger" role="alert">
+            Mot de passe ou identifiant incorrect !
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
