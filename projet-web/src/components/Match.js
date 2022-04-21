@@ -45,7 +45,7 @@ function Match() {
   return (
 
     <>
-      <h1 > match entre toto et titi </h1>
+      <h1>MATCH</h1>
 
     </>
 

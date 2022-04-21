@@ -3,27 +3,27 @@ import { store } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux"; //, useSelector
 import { useNavigate } from "react-router";
 import { MatchMaking } from "../redux/actions";
+import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Matchmaking() {
   const utilisateur = store.getState();
   const dispatch = useDispatch(); // dispatch les donnée
   const setMatchM = (data) => dispatch(MatchMaking(data));
-  const matchM = useSelector((state) => state.matchM);
+  const matchMa = useSelector((state) => state.matchM);
   const [listeParticipants, setListeParticipants] = useState([]);
   const [listeRequetes, setListeRequetes] = useState([]);
+  const [requestSend, setRequestSend] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    participer();
-    participants();
     const timer = setInterval(async () => {
-      // Toutes les 3 sec, on actualise la liste des participants
+      participer();
       participants();
     }, 3000);
     return () => clearInterval(timer);
   }, []);
 
   function participer() {
-
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("www-authenticate", utilisateur.user.token);
@@ -32,10 +32,6 @@ function Matchmaking() {
       headers: headers,
     };
 
-    console.log("token : " + utilisateur.user.token);
-
-    // },)
-    //useEffect( () => {    // ajouter update toutes les x secondes dans le useEffect
     fetch("http://localhost:3001/matchmaking/participate", requestOptions)
       .then((response) => response.json())
       .then((data) => {
@@ -44,14 +40,27 @@ function Matchmaking() {
           request: data.request,
         };
 
-        console.log(matchM);
+        console.log("dans participer");
 
-        setMatchM(matchM); 
+        const req = [];
+        data.request.forEach((elt) => {
+          req.push(
+            <li
+              onClick={() => {
+                acceptRequest(elt.matchmakingId);
+              }}
+            >
+              {elt.name}
+            </li>
+          );
+        });
+        console.log(data);
+        setMatchM(matchM);
+        setListeRequetes(req);
       })
       .catch((error) => console.error(error));
-
-
   }
+
   function participants() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -64,26 +73,83 @@ function Matchmaking() {
     fetch("http://localhost:3001/matchmaking/getAll", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-
-        const participants = JSON.stringify(data)
-        setListeParticipants(participants); 
-
+        const part = [];
+        data.forEach((elt) => {
+          part.push(
+            <li
+              key={elt.name}
+              onClick={() => {
+                sendRequest(elt.matchmakingId);
+              }}
+            >
+              {elt.name}
+            </li>
+          );
+        });
+        setListeParticipants(part);
+        console.log("dans participants");
       })
       .catch((error) => console.error(error));
   }
 
+  function sendRequest(idMatch) {
+    setRequestSend(false);
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("www-authenticate", utilisateur.user.token);
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
 
-  function sendRequest(){
-
-
+    fetch(
+      "http://localhost:3001/matchmaking/request?matchmakingId=" + idMatch,
+      requestOptions
+    )
+      .then((response) => {
+        console.log("dans sendRequest");
+        setRequestSend(true);
+      })
+      .catch((error) => console.error(error));
   }
 
+  function acceptRequest(idMatch) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("www-authenticate", utilisateur.user.token);
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
+
+    fetch(
+      "http://localhost:3001/matchmaking/acceptRequest?matchmakingId=" +
+        idMatch,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/match");
+      })
+      .catch((error) => console.error(error));
+  }
 
   return (
     <div>
       <h1>User: {utilisateur.user.name}</h1>
+      {requestSend && (
+        <div className="alert alert-success" role="alert">
+          Requête envoyée !
+          <button
+            type="button"
+            className="btn-close"
+            aria-label="Close"
+          ></button>
+        </div>
+      )}
       <h1>Liste des joueurs cherchant un match:</h1>
-      <p className="participants">{listeParticipants}</p>
+      <ul>{listeParticipants}</ul>
       <h1>Liste des joueurs qui vous demandent un match:</h1>
       <p className="demandes">{listeRequetes}</p>
     </div>
