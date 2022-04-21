@@ -69,7 +69,7 @@ const listreduxAllRequests = (reduxAllRequests.map((d) =>
       )
       .catch((error) => console.error(error));
     console.log("Accepting match with " + d.name);
-    // navigate("/match");
+    navigate("/match");
 }
 } > {d.name} </li>));
 
