@@ -4,9 +4,9 @@ import Logout from "./components/Logout";
 import Home from "./components/Home";
 import HomeConnect from "./components/HomeConnect";
 import Matchmaking from "./components/Matchmaking"
-import Request from "./components/Request"
 import Match from "./components/Match"
 import Choix from "./components/Choix";
+import EndMatch from "./components/EndMatch"
 import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -30,11 +30,13 @@ function App() {
           
           <Route path="/participation" element={<Matchmaking />} />
 
-          <Route path="/request" element={<Request />} />
-
           <Route path="/match" element={<Match />} />
 
-          <Route path="/cartes" element={<Choix />} />
+          <Route path="/choix" element={<Choix />} />
+
+          <Route path="/finMatch" element={<EndMatch />} />
+
+
 
         </Routes>
       </Router>

@@ -5,14 +5,12 @@ import { Link } from "react-router-dom"; //, Navigate
 import { useNavigate } from "react-router";
 import { LogInAction } from "../redux/actions";
 
-//import '../../node_modules/bootstrap/dist/css/bootstrap.css
 
 function Connexion() {
   const [wrong, setWrong] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // dispatch les donné
+  const dispatch = useDispatch(); // dispatch les données
   const setUser = (data) => dispatch(LogInAction(data));
-  const reduxUser = useSelector((state) => state.user); // appelle d'action
 
   function onSubmit(values) {
     setWrong(false);
@@ -40,23 +38,21 @@ function Connexion() {
               token: data.token,
             };
 
-            setUser(user); // recup donnéers de user et renvoi vers le redux
+            setUser(user); // recup données de user et renvoi vers le redux
 
-            //lancer popup
-            
+
             navigate("/accueil");
           })
-          .catch((err) => console.error(err)); //SI status= 500 -> existe déja
+          .catch((err) => console.error(err)); 
       }
     });
   }
 
-  //redirection
 
   return (
     <div>
       <div className="Logoconnec">
-        <Link to="/deconnexion">
+        <Link to="/">
           <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
         </Link>
       </div>

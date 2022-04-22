@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { store } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux"; //, useSelector
 import { useNavigate } from "react-router";
 import { MatchMaking } from "../redux/actions";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Matchmaking() {
-  const utilisateur = store.getState();
   const dispatch = useDispatch();
   const setMatchM = (data) => dispatch(MatchMaking(data));
-  const matchMa = useSelector((state) => state.matchM);
   const [listeParticipants, setListeParticipants] = useState([]);
   const [listeRequetes, setListeRequetes] = useState([]);
   const [requestSend, setRequestSend] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const utilisateur = useSelector((state) => state.user);
 
+  if (utilisateur.id == "") {
+    navigate("/");
+  }
   useEffect(() => {
+    participer();
+    participants();
     const timer = setInterval(async () => {
       participer();
       participants();
@@ -42,6 +45,7 @@ function Matchmaking() {
         };
 
         const req = [];
+
         data.request.forEach((elt) => {
           req.push(
             <li
@@ -56,7 +60,19 @@ function Matchmaking() {
         console.log(data);
         setMatchM(matchM);
         setListeRequetes(req);
+        if (data.match) {
+          // si match existe
+          navigate("/choix");
+        }
       })
+      .catch((error) => console.error(error));
+
+    fetch("http://localhost:3001/match/getAllMatch", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("match en cours:" + data);
+      })
+
       .catch((error) => console.error(error));
   }
 
@@ -86,7 +102,6 @@ function Matchmaking() {
           );
         });
         setListeParticipants(part);
-        console.log("dans participants");
       })
       .catch((error) => console.error(error));
   }
@@ -111,32 +126,6 @@ function Matchmaking() {
       .catch((error) => console.error(error));
   }
 
-  function accepted(){
-
-    //regarder si un match existe avec lui, si oui -> navigate vers match
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-    headers.append("www-authenticate", utilisateur.user.token);
-    const requestOptions = {
-      method: "GET",
-      headers: headers,
-    };
-
-    fetch(
-      "http://localhost:3001/match/getAllMatch",requestOptions
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        navigate("/match");
-      })
-      .catch((error) => console.error(error));
-  }
-
-
-
-  
-
   function acceptRequest(idMatch) {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -151,13 +140,12 @@ function Matchmaking() {
         idMatch,
       requestOptions
     )
-      .then((response)  => {
+      .then((response) => {
         console.log(response);
-        navigate("/match");
+        navigate("/choix");
       })
       .catch((error) => console.error(error));
   }
-
 
   return (
     <div>

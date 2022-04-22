@@ -50,7 +50,7 @@ function Inscription() {
   return (
     <div>
       <div className="Logoconnec">
-        <Link to="/deconnexion">
+        <Link to="/">
           <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
         </Link>
       </div>

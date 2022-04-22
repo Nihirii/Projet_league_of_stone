@@ -1,18 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { LogOutAction } from "../redux/actions";
 import { useEffect } from "react";
 
-const Logout = () => {
-
+function Logout() {
   const dispatch = useDispatch();
-  dispatch(LogOutAction());
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/")
-  }, )
-
+    dispatch(LogOutAction());
+    navigate("/");
+  });
 }
 
-export default Logout
+export default Logout;

@@ -1,4 +1,6 @@
 import React from "react"; //, { useState, useEffect }
+import { Link } from "react-router-dom"; //, Navigate
+
 //import { Form} from "react-final-form";
 import { store } from "../redux/store";
 import { useNavigate } from "react-router";
@@ -6,13 +8,11 @@ import { useDispatch } from "react-redux"; //, useSelector
 import { ALLMATCHMAKING, MatchMaking } from "../redux/actions";
 
 function Match() {
-  const navigate = useNavigate();
+
   //const [myRequest, setMyRequest] = useState([])
   const utilisateur = store.getState();
 
   const dispatch = useDispatch(); // dispatch les donné
-  const setMatchM = (data) => dispatch(MatchMaking(data));
-  const setAllMatch = (data) => dispatch(ALLMATCHMAKING(data));
 
   //const [error, setError] = useState(null);
 
@@ -34,7 +34,7 @@ function Match() {
       .then((data) => {
     
         // Faut filtrer la liste et selectionner uniquement le match qui concerne cette utilisateur
-        console.log(data)
+        console.log("Match en cours: " + data)
       })
       
         //setMatchCourant(????); // sauvegarde des données sur le match qui conserne cette utilisateur
@@ -45,7 +45,9 @@ function Match() {
   return (
 
     <>
+    
       <h1>MATCH</h1>
+    <Link id="btnhome" className="btn btn-lg" to="/finMatch">Fin du match</Link>
 
     </>
 

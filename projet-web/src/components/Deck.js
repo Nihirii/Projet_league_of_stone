@@ -3,8 +3,13 @@ import Card from './Card';
 import '../styles/Choix.css';
 
 
+
+
 class Deck extends React.Component {
 
+
+
+  
   constructor(props) {
     super(props)
 
