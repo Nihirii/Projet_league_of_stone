@@ -71,7 +71,7 @@ const Choix = () => {
   };
 
   return (
-    <div className="row" id="pouet">
+    <div className="row" id="choix">
       <div className="ValideDeck">
         <button
           className="btn btn-dark"

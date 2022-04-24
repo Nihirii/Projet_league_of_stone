@@ -1,6 +1,7 @@
 import React from "react";
 
 import '../styles/HomeConnect.css';
+
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 import { useSelector } from "react-redux";

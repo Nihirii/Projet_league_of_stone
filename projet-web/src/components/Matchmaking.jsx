@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"; //, useSelector
 import { useNavigate } from "react-router";
 import { MatchMaking } from "../redux/actions";
+import "../styles/Matchmaking.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Matchmaking() {
@@ -137,7 +138,7 @@ function Matchmaking() {
 
     fetch(
       "http://localhost:3001/matchmaking/acceptRequest?matchmakingId=" +
-        idMatch,
+      idMatch,
       requestOptions
     )
       .then((response) => {
@@ -148,8 +149,11 @@ function Matchmaking() {
   }
 
   return (
-    <div>
-      <h1>User: {utilisateur.name}</h1>
+    <div className="matchmaking">
+      <div>
+        <h1 >Pseudo: {utilisateur.name}</h1>
+      </div>
+
       {requestSend && (
         <div className="alert alert-success" role="alert">
           Requête envoyée !
@@ -160,10 +164,23 @@ function Matchmaking() {
           ></button>
         </div>
       )}
-      <h1>Liste des joueurs cherchant un match:</h1>
-      <ul>{listeParticipants}</ul>
-      <h1>Liste des joueurs qui vous demandent un match:</h1>
-      <p className="demandes">{listeRequetes}</p>
+      <div className="list1 row">
+        <div className="list2 col ">
+          <h1>Liste des joueurs cherchant un match:</h1>
+          <ul>
+            <li>
+              {listeParticipants}
+            </li>
+          </ul>
+        </div>
+
+        <div className="list2 col">
+          <h1>Liste des joueurs qui vous demandent un match:</h1>
+          <p className="demandes">{listeRequetes}</p>
+        </div>
+      </div>
+
+
     </div>
   );
 }

@@ -23,7 +23,7 @@ class Deck extends React.Component {
 
     return (
 
-      <section id="deck" className="col-6" >
+      <section id="deck" className="col" >
  
         <div className="row">
 

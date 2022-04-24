@@ -6,6 +6,7 @@ import { store } from "../redux/store";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux"; //, useSelector
 import { ALLMATCHMAKING, MatchMaking } from "../redux/actions";
+import "../styles/Match.css";
 
 function Match() {
 
@@ -44,12 +45,12 @@ function Match() {
   
   return (
 
-    <>
+    <div className="match">
     
       <h1>MATCH</h1>
     <Link id="btnhome" className="btn btn-lg" to="/finMatch">Fin du match</Link>
 
-    </>
+    </div>
 
   );
 }

@@ -22,18 +22,18 @@ class Card extends React.Component {
         return (
             
             
-            <div className=" col-4 container"   >
+            <div className="card "   >
 
-                <div className="col-12 card" id="carte" onClick={() => this.props.onClick(this.props.champion)} >
+                <div className=" "  onClick={() => this.props.onClick(this.props.champion)} >
                     <div >
-                        <div className="row">
-                        <img src={img} className=" col-12" alt={this.props.champion.name} />
+                        <div className="">
+                        <img src={img} className="card-image " alt={this.props.champion.name} />
                         </div>
-                        <div className="card-img-overlay row" id="contenucard">
+                        <div className="card-img-overlay " id="contenucard">
                             
-                            <p className="card-text col"> armure: {this.props.champion.info.defense}</p>
-                            <p className="card-text col-6">{this.props.champion.name} </p>
-                            <p className="card-text col"> attaque: {this.props.champion.info.attack}</p>
+                            <p className="card-text "> arm: {this.props.champion.info.defense}</p>
+                            <p className="card-title ">{this.props.champion.name} </p>
+                            <p className="card-text "> atk: {this.props.champion.info.attack}</p>
 
                             
 

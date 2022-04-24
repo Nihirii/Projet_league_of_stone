@@ -18,7 +18,7 @@ class CardList extends React.Component {
 
     return (
 
-      <div className="col-6 " >
+      <div className="col " >
         <div className="row">
 
           {this.props.carte.map((entry, _) => {

@@ -1,38 +1,61 @@
-#pouet {
-
-    background-image: url("../medias/background.png");
-    background-attachment: fixed;
-
-  }
-  @font-face {
+/* Englobe Card.js Deck.js CardList.js Choix.js*/
+@font-face {
   font-family: "League of legend";
   src: url("../medias/Friz\ Quadrata\ Bold.otf") format("otf"),
- }
+}
+/*Component Choix  */
+#choix {
 
+  background-image: url("../medias/background.png");
+  background-attachment: fixed;
 
+}
+.ValideDeck {
+  text-align: center;
+}
+
+/* component Card */
 .card {
 
-  background-color: #1b1918!important;
-  color : white;
-  padding: 0;
-  margin: 1%;
-  font-family: "league of legend"; ;
+  width: 150px;
+  height: 200px;
+  background-color: #333;
+  border-radius: 10px;
+  outline: 1px solid rgba(255, 255, 255, .5);
+  outline-offset: -8;
+  box-shadow: 3px 9px 10px rgba(0, 0, 0, .1);
+  position: relative;
+  overflow: hidden;
+  color: white;
+  font-family: "league of legend";
 }
 
-#carte:hover {
-  box-shadow: 0 0 10px black;
-}
-.card-body {
-  padding: 0;
-  text-align: center;
-}
-section {
-    max-width: max-content ;
-}
-#deck{
-    background-color: rgba(0,0,0,0.28);
+.card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .6;
+  transition: transform .75%;
 }
 
-.ValideDeck{
-  text-align: center;
+
+.card:hover .card-image {
+  transform: scale(1.15);
 }
+
+.card-title {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  font-size: 20px;
+  text-shadow: 0 0 1px rgba(0, 0, 0, .5);
+}
+
+/* Component Deck */
+
+#deck {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
