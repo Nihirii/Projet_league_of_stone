@@ -5,6 +5,8 @@ import { MatchMaking } from "../redux/actions";
 import "../styles/Matchmaking.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
+
+//Page de recherche de match
 function Matchmaking() {
   const dispatch = useDispatch();
   const setMatchM = (data) => dispatch(MatchMaking(data));
@@ -14,9 +16,13 @@ function Matchmaking() {
   const navigate = useNavigate();
   const utilisateur = useSelector((state) => state.user);
 
+
+  //vérifie que l'utilisateur est connecté
   if (utilisateur.id === "") {
     navigate("/");
   }
+
+  //Actualise les données toutes les trois secondes
   useEffect(() => {
     participer();
     participants();
@@ -28,6 +34,8 @@ function Matchmaking() {
     return () => clearInterval(timer);
   }, []);
 
+  //Ajoute l'utilisateur dans la liste des personnes qui recherche un match
+  //Récupère également les requetes envoyées à l'utlisateur
   function participer() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -62,12 +70,13 @@ function Matchmaking() {
         setMatchM(matchM);
         setListeRequetes(req);
         if (data.match) {
-          // si match existe
+          // si match existe, renvoie vers la sélection des champions
           navigate("/choix");
         }
       })
       .catch((error) => console.error(error));
 
+    //Console log pour vérifier les match en cours
     fetch("http://localhost:3001/match/getAllMatch", requestOptions)
       .then((response) => response.json())
       .then((data) => {
@@ -77,6 +86,7 @@ function Matchmaking() {
       .catch((error) => console.error(error));
   }
 
+  //Permet d'afficher les joueurs en recherche de match
   function participants() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -95,7 +105,7 @@ function Matchmaking() {
             <li
               key={elt.name}
               onClick={() => {
-                sendRequest(elt.matchmakingId);
+                sendRequest(elt.matchmakingId); 
               }}
             >
               {elt.name}
@@ -107,6 +117,7 @@ function Matchmaking() {
       .catch((error) => console.error(error));
   }
 
+  //Lorqu'on clique sur le pseudo d'un joueur de la liste, envoie d'une demande de match
   function sendRequest(idMatch) {
     setRequestSend(false);
     const headers = new Headers();
@@ -127,6 +138,7 @@ function Matchmaking() {
       .catch((error) => console.error(error));
   }
 
+  //Permet d'accepter une requete d'un autre utilisateur. Renvoie vers la sélection des champions
   function acceptRequest(idMatch) {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");

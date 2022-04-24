@@ -12,6 +12,9 @@ function Connexion() {
   const dispatch = useDispatch(); // dispatch les données
   const setUser = (data) => dispatch(LogInAction(data));
 
+
+  //Se lance lorsqu'on clique sur le bouton valide.
+  //Vérifie que l'utilisateur existe puis envoie les données au serveur. Renvoie vers la page d'accueil.
   function onSubmit(values) {
     setWrong(false);
 
@@ -38,12 +41,12 @@ function Connexion() {
               token: data.token,
             };
 
-            setUser(user); // recup données de user et renvoi vers le redux
+            setUser(user); // récupère les données de user et envoi redux
 
 
             navigate("/accueil");
           })
-          .catch((err) => console.error(err)); 
+          .catch((err) => console.error(err));
       }
     });
   }
@@ -59,6 +62,7 @@ function Connexion() {
       <div className="connexion"></div>
 
       <div className="inscription">
+        {/* Formulaire de connexion */}
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit }) => (
@@ -90,7 +94,7 @@ function Connexion() {
             </form>
           )}
         />
-
+        {/* Message d'alerte si utilisateur inconnu */}
         {wrong && (
           <div className="alert alert-danger" role="alert">
             Mot de passe ou identifiant incorrect !

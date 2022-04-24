@@ -14,10 +14,12 @@ const Choix = () => {
 
   const navigate = useNavigate();
 
+  //vérifie que l'utilisateur est connecté
   if (reduxUser.id == "") {
     navigate("/");
   }
 
+  //Récupère les données des cartes
   useEffect(() => {
     fetch("http://localhost:3001/cards")
       .then((response) => response.json())
@@ -27,10 +29,12 @@ const Choix = () => {
       .catch((err) => console.error(err));
   }, []);
 
+
+  //Place le champion dans le deck de l'utilisateur(si moins de 20 cartes dedans)
   const ajouterChamp = (champion) => {
     if (choisi.length < 20) {
       const nonChoisi = nonchoisi.filter((value) => value.id !== champion.id);
-      const Choisi = [...choisi, champion]; //si pas 20
+      const Choisi = [...choisi, champion]; 
 
       setnonchoisi(nonChoisi);
       setchoisi(Choisi);
@@ -39,14 +43,16 @@ const Choix = () => {
     }
   };
 
+  //retire le champion du deck
   const retirerChamp = (champion) => {
     const Choisi = choisi.filter((value) => value.id !== champion.id);
-    const nonChoisi = [...nonchoisi, champion]; //si pas 20
+    const nonChoisi = [...nonchoisi, champion];
 
     setnonchoisi(nonChoisi);
     setchoisi(Choisi);
   };
 
+  //Lorsqu'on clique sur le bouton valider, envoie les données du deck au serveur, puis redirige vers le match
   const sendDeck = () => {
     let deck = [];
 

@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import { useEffect } from "react";
 
+//Non utilisé, met fin a un match
 function EndMatch() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const reduxUser = useSelector((state) => state.user);
 

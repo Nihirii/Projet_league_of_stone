@@ -1,3 +1,5 @@
+
+//Valeurs initiales de user et du matchmaking 
 const initialState = {
   user: {
     id: "",
@@ -6,15 +8,15 @@ const initialState = {
     token: undefined,
   },
 
-  matchM: { 
-    matchmakingId: "", 
-    request:"",
+  matchM: {
+    matchmakingId: "",
+    request: "",
   },
-
-  AllMatch: [],
 
 };
 
+
+//Mise a jour des états
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case "LOGIN":
@@ -24,9 +26,7 @@ export default (state = initialState, { type, payload }) => {
 
     case "MATCHMAKING":
       return { ...state, matchM: { ...payload } };
-    case "ALLMATCHMAKING":
-      return { ...state, AllMatch: { ...payload } };
-  default:
+    default:
       return state;
   }
 };

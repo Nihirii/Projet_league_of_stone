@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux"; //, useSelector
 import { ALLMATCHMAKING, MatchMaking } from "../redux/actions";
 import "../styles/Match.css";
 
+//Page du match. Pas implémenté
 function Match() {
 
   //const [myRequest, setMyRequest] = useState([])
@@ -47,7 +48,7 @@ function Match() {
 
     <div className="match">
     
-      <h1>MATCH</h1>
+    <h1>MATCH</h1>
     <Link id="btnhome" className="btn btn-lg" to="/finMatch">Fin du match</Link>
 
     </div>

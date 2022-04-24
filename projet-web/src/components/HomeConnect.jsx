@@ -5,14 +5,18 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
+
+//Page d'accueil du jeu une fois connecté
 function HomeConnect() {
   const navigate = useNavigate();
   const utilisateur = useSelector((state) => state.user);
 
+  //vérifie que l'utilisateur est connecté
   if (utilisateur.id == "") {
     navigate("/");
   }
 
+  //renvoie vers la page de matchmaking
   function lancerMatchmaking() {
     navigate("/participation");
   }

@@ -2,19 +2,14 @@ import React from 'react';
 import Card from './Card';
 import '../styles/Choix.css';
 
+//composant pour toutes les cartes du jeu
 class CardList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-
-
-
-}
+  }
 
 
   render() {
-
-
-
 
     return (
 
@@ -30,8 +25,6 @@ class CardList extends React.Component {
         </div>
 
       </div>
-
-
 
     );
   }

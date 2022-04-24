@@ -8,13 +8,15 @@ import Match from "./components/Match"
 import Choix from "./components/Choix";
 import EndMatch from "./components/EndMatch"
 import "./styles/App.css";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 function App() {
 
   return (
     <div>
+
+      {/*Gère la navigation de l'application */}
       <Router>
 
         <Routes>
@@ -27,7 +29,7 @@ function App() {
           <Route path="/accueil" element={<HomeConnect />} />
 
           <Route path="/deconnexion" element={<Logout />} />
-          
+
           <Route path="/participation" element={<Matchmaking />} />
 
           <Route path="/match" element={<Match />} />
@@ -35,9 +37,6 @@ function App() {
           <Route path="/choix" element={<Choix />} />
 
           <Route path="/finMatch" element={<EndMatch />} />
-
-
-
         </Routes>
       </Router>
     </div>

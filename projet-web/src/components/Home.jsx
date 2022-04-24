@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../styles/Home.css';
 
+
+//Page de départ du jeu, permet de se connecter ou de créer un compte.
 function Home() {
   return (
     <div>

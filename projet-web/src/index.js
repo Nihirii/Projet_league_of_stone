@@ -8,6 +8,7 @@ import { Provider, useSelector } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  //Appel du store pour le rendre disponible
   <Provider store={store}>
     <React.StrictMode>
       <App />

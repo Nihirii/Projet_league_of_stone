@@ -2,31 +2,21 @@ import React from 'react';
 import Card from './Card';
 import '../styles/Choix.css';
 
-
-
-
+//composant pour les cartes du jeu sélectionnées
 class Deck extends React.Component {
 
-
-
-  
   constructor(props) {
     super(props)
-
-
-
   }
 
 
   render() {
-
 
     return (
 
       <section id="deck" className="col" >
  
         <div className="row">
-
 
           {this.props.carte.map((entry, _) => {
 
@@ -36,12 +26,7 @@ class Deck extends React.Component {
           }
         </div>
   
-
-
       </section>
-
-
-
     );
   }
 }

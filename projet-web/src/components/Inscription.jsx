@@ -5,12 +5,17 @@ import { useNavigate } from "react-router";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../styles/Connexion.css";
 
+//Page d'inscription
 function Inscription() {
   const [userAlreadyExist, setUserAlreadyExist] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
   const [errorPassword, seterrorPassword] = useState(false);
   const navigate = useNavigate();
 
+
+  //Se déclenche lorsqu'on appuie sur le bouton validé
+  //Vérification des données du formulaire
+  //Récupère ce que l'utilisateur a inscrit et l'envoie vers le serveur
 
   function onSubmit(values) {
     setUserAlreadyExist(false);
@@ -31,20 +36,20 @@ function Inscription() {
       };
 
       fetch("http://localhost:3001/user", requestOptions)
-      
-      .then((response) => {
-        if (response.status === 409) {
-          setUserAlreadyExist(true);
-        } else {
-          response.json()
 
-            .then((data) => {
-              setUserCreated(true);
-              navigate("/");
-            })
-            .catch((err) => console.error(err));
-        }
-      });
+        .then((response) => {
+          if (response.status === 409) {
+            setUserAlreadyExist(true);
+          } else {
+            response.json()
+
+              .then((data) => {
+                setUserCreated(true);
+                navigate("/");
+              })
+              .catch((err) => console.error(err));
+          }
+        });
     }
   }
   return (
@@ -58,6 +63,7 @@ function Inscription() {
       <div className="connexion">
         <div className="inscription">
           {!userCreated && (
+            //Formulaire de connexion
             <Form
               onSubmit={onSubmit}
               render={({ handleSubmit }) => (
@@ -100,6 +106,7 @@ function Inscription() {
             />
           )}
 
+          {/* Message d'alerte si le pseudo est déja prit */}
           {userAlreadyExist && (
             <div
               className="alert alert-warning alert-dismissible fade show"
@@ -117,6 +124,7 @@ function Inscription() {
             </div>
           )}
 
+          {/* Message d'alerte de réussite*/}
           {userCreated && (
             <div
               className="alert alert-warning alert-dismissible fade show"
@@ -134,6 +142,7 @@ function Inscription() {
             </div>
           )}
 
+          {/* Message d'alerte lorsque les deux mots de passe ne correspondent pas */}
           {errorPassword && (
             <div
               className="alert alert-warning alert-dismissible fade show"
