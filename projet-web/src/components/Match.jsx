@@ -3,15 +3,12 @@ import { Link } from "react-router-dom"; //, Navigate
 
 //import { Form} from "react-final-form";
 import { store } from "../redux/store";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux"; //, useSelector
-import { ALLMATCHMAKING, MatchMaking } from "../redux/actions";
 import "../styles/Match.css";
 
 //Page du match. Pas implémenté
 function Match() {
 
-  //const [myRequest, setMyRequest] = useState([])
   const utilisateur = store.getState();
 
   const dispatch = useDispatch(); // dispatch les donné
@@ -29,8 +26,7 @@ function Match() {
 
     console.log("token : " + utilisateur.user.token);
 
-    // },)
-    //useEffect( () => {    // ajouter update toutes les x secondes dans le useEffect
+    
     fetch("http://localhost:3001/match/getAllMatch", requestOptions)
       .then((response) => response.json())
       .then((data) => {
