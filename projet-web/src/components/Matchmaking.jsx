@@ -178,16 +178,16 @@ function Matchmaking() {
       )}
       <div className="list1 row">
         <div className="list2 col ">
-          <h1>Liste des joueurs cherchant un match:</h1>
+          <h4>Liste des joueurs cherchant un match:</h4><br></br>
           <ul>
             <li>
               {listeParticipants}
             </li>
           </ul>
-        </div>
+        </div><br></br>
 
         <div className="list2 col">
-          <h1>Liste des joueurs qui vous demandent un match:</h1>
+          <h4>Liste des joueurs qui vous demandent un match:</h4>
           <p className="demandes">{listeRequetes}</p>
         </div>
       </div>
