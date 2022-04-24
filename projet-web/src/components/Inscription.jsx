@@ -55,9 +55,10 @@ function Inscription() {
   return (
     <div>
       <div className="Logoconnec">
-        <Link to="/">
-          <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
+        <Link to="/" >
+          <img className="logoLOS" src={require("../medias/logoLOS.png")} alt="LogoLOS" />
         </Link>
+
       </div>
 
       <div className="connexion">
@@ -159,6 +160,11 @@ function Inscription() {
               </button>
             </div>
           )}
+          <div className="backConnect">
+            <Link to="/deconnexion" className="btn btn-dark">
+              revenir en arriere
+            </Link>
+          </div>
         </div>
       </div>
     </div>

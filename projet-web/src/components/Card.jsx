@@ -18,7 +18,7 @@ class Card extends React.Component {
         return (
 
 
-            <div className="card "   >
+            <div className="card"   >
 
                 <div className=" " onClick={() => this.props.onClick(this.props.champion)} >
                     <div >

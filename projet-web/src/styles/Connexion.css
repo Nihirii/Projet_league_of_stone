@@ -1,4 +1,3 @@
-
 .connexion {
     content: "";
     background-image: url("../medias/backgroundinscription.jpg");
@@ -13,8 +12,8 @@
     z-index: -1;
 }
 
-.inscription{
-    background-color:rgba(255, 255, 255, 0.5);
+.inscription {
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     float: right;
@@ -22,6 +21,32 @@
     width: 50%;
 }
 
-.Logoconnec {
-    float:left;
+/* met le logo a gauche */
+.Logoconnec {   
+    float: left;
+}
+/* Enleve le titre et le bouton sur un ecran superieur a 600px */
+
+.backConnect{
+    display:none;
+}
+
+@media (max-width: 600px) {
+    .logoLOS {
+        display: none;
+    }
+ /* change le css de l'inscription */
+    .inscription {
+        background:none;
+        flex-direction: none;
+        float: none;
+        width:100%;
+        height:100%;
+    }
+    /* met le titre sur un ecran inferieur ou egale 600px */
+
+    .backConnect{
+        display:block;
+    }
+
 }

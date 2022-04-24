@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import '../styles/Home.css';
@@ -12,6 +13,7 @@ function Home() {
         <div className="logoLOS">
           <img src={require("../medias/logoLOS.png")} alt="LogoLOS"/>
         </div>
+        <h1 className="titlephone">League of stone</h1>
         <div className="links">
           <Link id="btnhome" className="btn btn-lg" to="/inscription">Crée un compte</Link>
           <Link id="btnhome" className="btn btn-lg" to="/connexion">Se connecter</Link>

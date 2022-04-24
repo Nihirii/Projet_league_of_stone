@@ -1,18 +1,13 @@
-.logoLOS{
-    float:right;
+.logoLOS {
+    float: right;
 }
 
-#btnhome{
-    background-color:rgba(255, 255, 255, 0.5);
+#btnhome {
+    background-color: rgba(255, 255, 255, 0.5);
     margin: 10px;
 }
 
-#btnhome2{
-    background-color:rgba(255, 255, 255, 0.5);
-    margin: 10px;
-}
-
-.BoutonHome{
+.BoutonHome {
     display: flex;
     flex-direction: column;
     float: right;
@@ -35,31 +30,20 @@
     right: 0;
     position: absolute;
     z-index: -1;
-    
-  }
 
-@media screen and (max-width: 600px) {
-
-
-    .home {
-        width:auto;
-    }
-
-    .logoLOS, img {
-        width: 400px;
-        height: auto;
-    }
-
-    .logoLOS{
-        width: auto;
-    }
-    .BoutonHome{
-        width: 100%;
-    }
-
-    
+}
+.titlephone {
+    display:none;
+}
+@media (max-width: 600px) {
     .logoLOS {
-        float: none;
-    
+        display: none;
+    }
+    .titlephone{
+        display: block;
+        margin-top: 50%
+    }
+    .links {
+        display: inline-block;
     }
 }

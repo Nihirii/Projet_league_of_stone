@@ -38,13 +38,12 @@ function HomeConnect() {
         </Link>
       </div>
       <div className="centre">
-        <button
+        <button className="btn"
           id="btnmatch"
-          className="btn"
           type="submit"
           onClick={lancerMatchmaking}
         >
-          Trouvez un match
+          <p id="nombtn">Trouvez un match</p>
         </button>
       </div>
     </div>

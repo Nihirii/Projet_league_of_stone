@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"; //, Navigate
 import { useNavigate } from "react-router";
 import { LogInAction } from "../redux/actions";
@@ -55,8 +55,8 @@ function Connexion() {
   return (
     <div>
       <div className="Logoconnec">
-        <Link to="/">
-          <img src={require("../medias/logoLOS.png")} alt="LogoLOS" />
+        <Link to="/" >
+          <img className="logoLOS" src={require("../medias/logoLOS.png")} alt="LogoLOS" />
         </Link>
       </div>
       <div className="connexion"></div>
@@ -88,7 +88,7 @@ function Connexion() {
                 />
               </div>
 
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-dark" type="submit">
                 Valider
               </button>
             </form>
@@ -108,6 +108,12 @@ function Connexion() {
             </button>
           </div>
         )}
+        <div className="backConnect">
+          <Link to="/deconnexion" className="btn btn-dark">
+            revenir en arriere
+          </Link>
+        </div>
+
       </div>
     </div>
   );

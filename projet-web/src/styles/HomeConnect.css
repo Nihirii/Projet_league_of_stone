@@ -26,32 +26,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color:rgba(255, 255, 255, 0.5);
-    height: 25%;
-    width: 40%;
+    height: 15%;
+    width: 25%;
     font-size: 200%;
     font-weight: bold;
-    border-radius: 15%;
+    border-radius: 15px;
   }
   #profil{
     text-align: center;
   }
-
-
-
-@media screen and (max-width: 650px) {
-  #btnmatch{
-    font-size: 120%;
-    position: none;
-    top: 75%;
-  }
-  
-  .profil, img {
-    height: 200px;
-    width: auto;
-    
-  }
-
-  
-
+@media (max-width: 600px) {
+    #nombtn{
+      font-size:0.5em;
+    }
 
 }
