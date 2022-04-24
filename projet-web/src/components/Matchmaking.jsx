@@ -13,7 +13,7 @@ function Matchmaking() {
   const navigate = useNavigate();
   const utilisateur = useSelector((state) => state.user);
 
-  if (utilisateur.id == "") {
+  if (utilisateur.id === "") {
     navigate("/");
   }
   useEffect(() => {
@@ -30,7 +30,7 @@ function Matchmaking() {
   function participer() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("www-authenticate", utilisateur.user.token);
+    headers.append("www-authenticate", utilisateur.token);
     const requestOptions = {
       method: "GET",
       headers: headers,
@@ -79,7 +79,7 @@ function Matchmaking() {
   function participants() {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("www-authenticate", utilisateur.user.token);
+    headers.append("www-authenticate", utilisateur.token);
     const requestOptions = {
       method: "GET",
       headers: headers,
@@ -110,7 +110,7 @@ function Matchmaking() {
     setRequestSend(false);
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("www-authenticate", utilisateur.user.token);
+    headers.append("www-authenticate", utilisateur.token);
     const requestOptions = {
       method: "GET",
       headers: headers,
@@ -129,7 +129,7 @@ function Matchmaking() {
   function acceptRequest(idMatch) {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("www-authenticate", utilisateur.user.token);
+    headers.append("www-authenticate", utilisateur.token);
     const requestOptions = {
       method: "GET",
       headers: headers,
@@ -149,7 +149,7 @@ function Matchmaking() {
 
   return (
     <div>
-      <h1>User: {utilisateur.user.name}</h1>
+      <h1>User: {utilisateur.name}</h1>
       {requestSend && (
         <div className="alert alert-success" role="alert">
           Requête envoyée !
