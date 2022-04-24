@@ -35,3 +35,23 @@
   #profil{
     text-align: center;
   }
+
+
+
+@media screen and (max-width: 650px) {
+  #btnmatch{
+    font-size: 120%;
+    position: none;
+    top: 75%;
+  }
+  
+  .profil, img {
+    height: 200px;
+    width: auto;
+    
+  }
+
+  
+
+
+}

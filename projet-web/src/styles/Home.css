@@ -7,6 +7,11 @@
     margin: 10px;
 }
 
+#btnhome2{
+    background-color:rgba(255, 255, 255, 0.5);
+    margin: 10px;
+}
+
 .BoutonHome{
     display: flex;
     flex-direction: column;
@@ -32,3 +37,29 @@
     z-index: -1;
     
   }
+
+@media screen and (max-width: 600px) {
+
+
+    .home {
+        width:auto;
+    }
+
+    .logoLOS, img {
+        width: 400px;
+        height: auto;
+    }
+
+    .logoLOS{
+        width: auto;
+    }
+    .BoutonHome{
+        width: 100%;
+    }
+
+    
+    .logoLOS {
+        float: none;
+    
+    }
+}
