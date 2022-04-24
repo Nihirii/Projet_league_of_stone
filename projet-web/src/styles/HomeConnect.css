@@ -26,11 +26,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color:rgba(255, 255, 255, 0.5);
-    height: 15%;
-    width: 25%;
+    height: 25%;
+    width: 40%;
     font-size: 200%;
     font-weight: bold;
-    border-radius: 15px;
+    border-radius: 15%;
   }
   #profil{
     text-align: center;
