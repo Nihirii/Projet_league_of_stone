@@ -10,7 +10,9 @@ const Choix = () => {
   const reduxUser = useSelector((state) => state.user);
   const [choisi, setchoisi] = useState([]);
   const [nonchoisi, setnonchoisi] = useState([]);
-  const [valider, setvalider] = useState(false);
+  const deckComplet = choisi.length === 20;
+  const [erreurDeck, setErreurDeck] = useState("");
+  const [envoiEnCours, setEnvoiEnCours] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,8 +40,6 @@ const Choix = () => {
 
       setnonchoisi(nonChoisi);
       setchoisi(Choisi);
-    } else {
-      setvalider(true);
     }
   };
 
@@ -54,12 +54,15 @@ const Choix = () => {
 
   //Lorsqu'on clique sur le bouton valider, envoie les données du deck au serveur, puis redirige vers le match
   const sendDeck = () => {
+    if (!deckComplet || envoiEnCours) return;
+
+    setErreurDeck("");
+    setEnvoiEnCours(true);
     let deck = [];
 
     choisi.forEach((elt) => {
       deck.push({ key: elt.name });
     });
-    console.log(deck);
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("www.authenticate", reduxUser.token);
@@ -70,10 +73,11 @@ const Choix = () => {
     const url = "http://localhost:3001/match/initDeck?deck=" + deck;
     fetch(url, requestOptions)
       .then((response) => {
-        response.json();
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         navigate("/match");
       })
-      .catch((err) => console.error(err));
+      .catch(() => setErreurDeck("Impossible de valider le deck. Réessaie."))
+      .finally(() => setEnvoiEnCours(false));
   };
 
   return (
@@ -82,13 +86,14 @@ const Choix = () => {
         <button
           className="btn btn-dark"
           type="submit"
-          disabled={!valider}
+          disabled={!deckComplet || envoiEnCours}
           onClick={() => {
             sendDeck();
           }}
         >
-          Validé deck
+          Valider le deck
         </button>
+        {erreurDeck && <p role="alert">{erreurDeck}</p>}
       </div>
 
       <CardList carte={nonchoisi} ajouterChamp={ajouterChamp} />
